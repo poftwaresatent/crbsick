@@ -30,17 +30,12 @@ AC_ARG_ENABLE(pedantic,
 case "$host_os" in
   linux*)  AC_MSG_NOTICE([detected Linux])
            CPPFLAGS="$CPPFLAGS -DLINUX"
-#           LDFLAGS="-lpthread $LDFLAGS"
-#           GFXLIBS="-L/usr/X11R6/lib -lglut -lGLU -lGL -lXi -lXmu"
 	    ;;
   darwin*) AC_MSG_NOTICE([detected OSX])
            CPPFLAGS="$CPPFLAGS -DOSX"
-           CFLAGS="$CFLAGS -Wno-long-double"
-#           GFXLIBS="-framework OpenGL -framework GLUT -lobjc"
 	    ;;
   *)       AC_MSG_ERROR([unknown host_os $host_os, update configure.ac]);;
 esac
-#AC_SUBST(GFXLIBS)
 
 CXXFLAGS="$CFLAGS"
 AC_SUBST(PACKAGE_VERSION)

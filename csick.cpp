@@ -18,9 +18,9 @@
  */
 
 
-#include <drivers/sick.h>
-#include <drivers/util.h>
-#include <util/Timestamp.hpp>
+#include "sick.h"
+#include "util.h"
+#include "Timestamp.hpp"
 #include <iostream>
 #include <fstream>
 #include <sstream>

@@ -14858,18 +14858,13 @@ case "$host_os" in
   linux*)  { $as_echo "$as_me:${as_lineno-$LINENO}: detected Linux" >&5
 $as_echo "$as_me: detected Linux" >&6;}
            CPPFLAGS="$CPPFLAGS -DLINUX"
-#           LDFLAGS="-lpthread $LDFLAGS"
-#           GFXLIBS="-L/usr/X11R6/lib -lglut -lGLU -lGL -lXi -lXmu"
 	    ;;
   darwin*) { $as_echo "$as_me:${as_lineno-$LINENO}: detected OSX" >&5
 $as_echo "$as_me: detected OSX" >&6;}
            CPPFLAGS="$CPPFLAGS -DOSX"
-           CFLAGS="$CFLAGS -Wno-long-double"
-#           GFXLIBS="-framework OpenGL -framework GLUT -lobjc"
 	    ;;
   *)       as_fn_error $? "unknown host_os $host_os, update configure.ac" "$LINENO" 5;;
 esac
-#AC_SUBST(GFXLIBS)
 
 CXXFLAGS="$CFLAGS"
 
