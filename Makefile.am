@@ -1,3 +1,4 @@
+ACLOCAL_AMFLAGS = -I m4
 CPPFLAGS+= -I@abs_top_srcdir@
 
 lib_LTLIBRARIES=    libsick.la

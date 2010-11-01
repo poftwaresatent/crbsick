@@ -2,6 +2,7 @@ AC_REVISION($Id$)
 AC_INIT(sick-driver, 0.0, roland DOT philippsen AT gmx DOT net)
 AC_PREREQ(2.57)
 AM_INIT_AUTOMAKE([-Wall -Werror foreign])
+AC_CONFIG_MACRO_DIR([m4])
 
 AC_CANONICAL_HOST
 
