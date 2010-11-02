@@ -5,6 +5,11 @@ This GPL'ed code is taken from http://cerebrate.sourceforge.net/ where
 it was part of the driver suite for Fernandez, an autonomous cactus
 that defended its territory.
 
+Copyrights:
+ - Copyright (C) 2005 Ecole Polytechnique Federale de Lausanne, Switzerland
+ - Copyright (C) 2005 Roland Philippsen <roland dot philippsen at gmx dot net>
+ - various copyrights on the build system
+
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 2 of the License, or
@@ -36,3 +41,24 @@ can use for testing and setting some parameters of your scanner.
 
 ...I haven't used any of this in 5 years, so please look at the code
 for more details...
+
+Library
+-------
+
+Include the `sick.h` header file in your program, and link it with the
+`libsick` library. The idea is to spawn an acquisition thread that
+continuously reads scans into a "poster" (a term borrowed from GenoM)
+and then copy the data into your own thread for processing. So, your
+usual code would look something like this, but please make sure to
+*use the return values for error detection*:
+
+    int fd(serial_open(comport, baudrate));
+    struct sick_poster_s * sp(sick_poster_new(fd, 1000, stderr));
+    sick_poster_start(sp);
+    struct sick_scan_s scan;
+    sick_poster_getscan(sp, & scan);
+    for(int i(0); i < 361; ++i)
+      cout << " " << i << "\t" << scan.rho[i] << "\n";
+    sick_poster_stop(sp);
+    sick_poster_delete(sp);
+    serial_close(fd);
