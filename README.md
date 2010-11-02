@@ -32,6 +32,12 @@ Compiling
 The usual `configure`, `make`, and optional `make install` should do
 the trick.
 
+    git clone git://github.com/poftwaresatent/crbsick.git
+    mkdir crbsick/build
+    cd crbsick/build
+    ../configure
+    make 
+
 Running
 -------
 
@@ -40,8 +46,15 @@ programs. It connects to a SICK LMS laser scanner via a serial
 port. There also is a little console program called `csick` which you
 can use for testing and setting some parameters of your scanner.
 
-...I haven't used any of this in 5 years, so please look at the code
-for more details...
+    ./csick
+
+If you have a non-standard name of the serial device or a specific
+baudrate to use, pass them as arguments. For example, to use 9600 baud
+on /dev/tts/17, you would say:
+
+    ./csick /dev/tts/17 9600 
+
+Please look at the code for more details...
 
 Library
 -------
