@@ -117,12 +117,12 @@ int main(int argc,
     case 'm':
       {
 	string fname;
-	auto_ptr<ofstream> os;
+	ofstream * os(0);
 	if( ! (cin >> fname))
 	  cout << "error reading filename, won't dump\n";
 	else{
-	  os = auto_ptr<ofstream>(new ofstream(fname.c_str()));
-	  if(0 == os.get())
+	  os = new ofstream(fname.c_str());
+	  if(0 == os)
 	    cout << "error opening \"" << fname << "\", won't dump.\n";
 	}
 	
@@ -132,7 +132,7 @@ int main(int argc,
 	else
 	  for(int i(0); i < 361; ++i){
 	    cout << "  " << i << "\t" << scan[i] << "\n";
-	    if(0 != os.get())
+	    if(os)
 	      (* os) << scan[i] << "\n";
 	  }
       }

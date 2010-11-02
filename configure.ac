@@ -31,6 +31,7 @@ AC_ARG_ENABLE(pedantic,
 case "$host_os" in
   linux*)  AC_MSG_NOTICE([detected Linux])
            CPPFLAGS="$CPPFLAGS -DLINUX"
+	   LDFLAGS="-lpthread $LDFLAGS"
 	    ;;
   darwin*) AC_MSG_NOTICE([detected OSX])
            CPPFLAGS="$CPPFLAGS -DOSX"
