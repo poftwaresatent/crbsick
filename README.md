@@ -6,6 +6,7 @@ it was part of the driver suite for Fernandez, an autonomous cactus
 that defended its territory.
 
 Copyrights:
+
  - Copyright (C) 2005 Ecole Polytechnique Federale de Lausanne, Switzerland
  - Copyright (C) 2005 Roland Philippsen <roland dot philippsen at gmx dot net>
  - various copyrights on the build system
