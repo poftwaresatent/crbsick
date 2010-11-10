@@ -27,6 +27,7 @@
 #define _BSD_SOURCE
 
 #include "sick_poster.h"
+#include "sick.h"
 #include <string.h>
 #include <stdlib.h>
 #include <errno.h>

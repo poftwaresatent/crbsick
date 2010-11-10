@@ -1,6 +1,6 @@
 CC=     gcc
 CFLAGS= -Wall -ansi -pipe -O3
-SRC=    sick.c util.c
+SRC=    sick.c util.c sick_poster.c
 OBJ=    $(SRC:.c=.o)
 AR=     ar
 RANLIB= ranlib
@@ -8,11 +8,11 @@ RANLIB= ranlib
 all: tsick
 
 tsick: tsick.o libsick.a
-	$(CC) -o tsick tsick.o libsick.a
+	$(CC) $(CFLAGS) -o tsick tsick.o libsick.a
 
 libsick.a: $(OBJ)
 	$(AR) r $@ $?
 	$(RANLIB) libsick.a
 
 clean:
-	- rm libsick.a $(OBJ)
+	- rm libsick.a tsick.o tsick $(OBJ)
