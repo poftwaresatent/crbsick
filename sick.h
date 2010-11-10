@@ -29,7 +29,7 @@
 
 #ifdef __cplusplus
 extern "C" {
-#endif // __cplusplus
+#endif
 
 #include <stdint.h>
 #include <stdio.h>
@@ -77,6 +77,6 @@ extern "C" {
   
 #ifdef __cplusplus
 }
-#endif // __cplusplus
+#endif
 
-#endif // SICK_H
+#endif

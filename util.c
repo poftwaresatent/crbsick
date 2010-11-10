@@ -23,9 +23,6 @@
 #include <stdio.h>
 #include <fcntl.h>
 #include <string.h>
-#include <netinet/in.h>
-#include <netdb.h>
-#include <sys/socket.h>
 #include <signal.h>
 #include <stdlib.h>
 
@@ -183,58 +180,9 @@ int buffer_read(int fd,
 }
 
 
-int tcp_open(uint32_t portnum,
-	     const char * server)
-{
-  int socket_fd;
-  struct sockaddr_in name;
-  struct hostent * hostinfo;
-  
-  socket_fd = socket(PF_INET, SOCK_STREAM, 0);
-  if(socket_fd < 0){
-    perror("tcp_open: socket");
-    return -1;
-  }
-  
-  name.sin_family = AF_INET;
-  hostinfo = gethostbyname(server);
-  if(hostinfo == NULL){
-    fprintf(stderr, "tcp_open: couldn't get hostinfo for %s: ", server);
-    switch(h_errno){
-    case HOST_NOT_FOUND: fprintf(stderr, "host not found\n"); break;
-    case NO_ADDRESS:     fprintf(stderr, "no address\n"); break;
-    case NO_RECOVERY:    fprintf(stderr, "no recovery\n"); break;
-    case TRY_AGAIN:      fprintf(stderr, "try again\n"); break;
-    default:             fprintf(stderr, "unknown error\n");
-    }
-    return -2;
-  }
-  name.sin_addr = * ((struct in_addr *) hostinfo->h_addr);
-  name.sin_port = htons(portnum);
-  
-  if(connect(socket_fd, (struct sockaddr *) & name, INET_ADDRSTRLEN) < 0){
-    perror("tcp_open: connect");
-    return -3;
-  }
-
-  return socket_fd;
-}
-
-
-int tcp_close(int fd)
-{
-  if(close(fd) < 0){
-    perror("tcp_close: close");
-    return -1;
-  }
-  
-  return 0;
-}
-
-
 static void handle(int signum)
 {
-  // The cleanup function is called implcitly through exit().
+  /* The cleanup function is called implcitly through exit(). */
   exit(EXIT_SUCCESS);
 }
 

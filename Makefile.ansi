@@ -1,0 +1,13 @@
+CC=     gcc
+CFLAGS= -Wall -ansi -pipe -O3
+SRC=    sick.c util.c
+OBJ=    $(SRC:.c=.o)
+AR=     ar
+
+all: libsick.a
+
+libsick.a: $(OBJ)
+	$(AR) r $@ $?
+
+clean:
+	- rm libsick.a $(OBJ)

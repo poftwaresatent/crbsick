@@ -23,7 +23,7 @@
 
 #ifdef __cplusplus
 extern "C" {
-#endif // __cplusplus
+#endif
 
 #include <stdio.h>
 #include <stdint.h>
@@ -32,9 +32,6 @@ extern "C" {
   
   int serial_open(const char * device, unsigned long baud);
   int serial_close(int fd);
-
-  int tcp_open(uint32_t portnum, const char * server);
-  int tcp_close(int fd);
 
   int buffer_write(int fd, const uint8_t * buffer, ssize_t n_bytes,
 		   FILE * dbg);
@@ -55,6 +52,6 @@ extern "C" {
   
 #ifdef __cplusplus
 } // extern "C"
-#endif // __cplusplus
+#endif
 
-#endif // UTIL_H
+#endif

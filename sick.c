@@ -23,13 +23,16 @@
  * USA
  */
 
+/* for timersub() and usleep() */
+#define _BSD_SOURCE
 
 #include "sick.h"
 #include "util.h"
 #include <string.h>
 #include <stdlib.h>
 #include <errno.h>
-
+#include <sys/time.h>
+#include <unistd.h>
 
 #define GetBytesAsInt(a,b) (256*(b) + (a))
 
@@ -179,7 +182,7 @@ int sick_recv(int fd,
     return -1;
   }
   
-  // header
+  /* header */
   result = buffer_read(fd, tgram, 4, dbg);
   if(result != 0){
     if(0 != dbg)
@@ -210,7 +213,7 @@ int sick_recv(int fd,
   }
   * tlen = length;
   
-  // answer, data, and crc
+  /* answer, data, and crc */
   result = buffer_read(fd, tgram + 4, length - 4, dbg);
   if(result != 0){
     if(0 != dbg)
@@ -553,7 +556,7 @@ int sick_poster_abort(struct sick_poster_s * sp)
 int sick_poster_getscan(const struct sick_poster_s * sp,
 			struct sick_scan_s * scan)
 {
-  struct sick_scan_s * current_scan = & sp->scan[sp->current];
+  const struct sick_scan_s * current_scan = & sp->scan[sp->current];
   int i;
   
   if(0 == sp->running){
