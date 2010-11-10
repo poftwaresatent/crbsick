@@ -18,6 +18,7 @@
  */
 
 
+#include "sick_poster.h"
 #include "sick.h"
 #include "util.h"
 #include "Timestamp.hpp"

@@ -80,7 +80,7 @@ am__installdirs = "$(DESTDIR)$(libdir)" "$(DESTDIR)$(bindir)" \
 	"$(DESTDIR)$(includedir)"
 LTLIBRARIES = $(lib_LTLIBRARIES)
 libsick_la_DEPENDENCIES =
-am_libsick_la_OBJECTS = Timestamp.lo sick.lo util.lo
+am_libsick_la_OBJECTS = Timestamp.lo sick.lo sick_poster.lo util.lo
 libsick_la_OBJECTS = $(am_libsick_la_OBJECTS)
 libsick_la_LINK = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CXXLD) $(AM_CXXFLAGS) \
@@ -247,10 +247,10 @@ top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 ACLOCAL_AMFLAGS = -I m4
 lib_LTLIBRARIES = libsick.la
-libsick_la_SOURCES = Timestamp.cpp sick.c util.c
+libsick_la_SOURCES = Timestamp.cpp sick.c sick_poster.c util.c
 libsick_la_LDFLAGS = -version-info 0:0:0
 libsick_la_LIBADD = 
-include_HEADERS = Timestamp.hpp sick.h util.h
+include_HEADERS = Timestamp.hpp sick.h sick_poster.h util.h
 csick_SOURCES = csick.cpp
 csick_LDADD = libsick.la
 all: config.h
@@ -398,6 +398,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/Timestamp.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/csick.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/sick.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/sick_poster.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/util.Plo@am__quote@
 
 .c.o:

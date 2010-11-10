@@ -3,11 +3,13 @@ CFLAGS= -Wall -ansi -pipe -O3
 SRC=    sick.c util.c
 OBJ=    $(SRC:.c=.o)
 AR=     ar
+RANLIB= ranlib
 
 all: libsick.a
 
 libsick.a: $(OBJ)
 	$(AR) r $@ $?
+	$(RANLIB) libsick.a
 
 clean:
 	- rm libsick.a $(OBJ)

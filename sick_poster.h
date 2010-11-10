@@ -24,8 +24,8 @@
  */
 
 
-#ifndef SICK_H
-#define SICK_H
+#ifndef SICK_POSTER_H
+#define SICK_POSTER_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -33,17 +33,36 @@ extern "C" {
 
 #include <stdint.h>
 #include <stdio.h>
+#include <pthread.h>
+#include <sys/time.h>
   
-  void sick_crc(uint8_t * tgram, int tlen, uint8_t crc[2], FILE * dbg);
-  int sick_chkcrc(uint8_t * tgram, int tlen, uint8_t crc[2], FILE * dbg);
-  
-  int sick_send(int fd, uint8_t * op_and_data, int odlen, FILE * dbg);
-  int sick_rack(int fd, FILE * dbg);
-  int sick_recv(int fd, uint8_t * tgram, int * tlen, FILE * dbg);
-  
-  int sick_dumpstatus(int fd, FILE * out);
-  int sick_rscan(int fd, uint16_t scan[361], FILE * dbg);
 
+  struct sick_scan_s {
+    struct timeval t0, t1;
+    uint16_t rho[361];
+  };
+  
+  struct sick_poster_s {
+    int fd;
+    unsigned int usec_cycle;
+    struct sick_scan_s scan[3];
+    int current, dirty, running;
+    unsigned int error_count;
+    pthread_t * thread;
+    FILE * dbg;
+    long tc_msec_min, tc_msec_max, tc_msec_sum, tc_count;
+    struct timeval current_t0;
+  };
+
+
+  struct sick_poster_s * sick_poster_new(int fd, unsigned int usec_cycle,
+					 FILE * dbg);
+  void sick_poster_delete(struct sick_poster_s * sp);
+  int sick_poster_start(struct sick_poster_s * sp);
+  int sick_poster_stop(struct sick_poster_s * sp);
+  int sick_poster_abort(struct sick_poster_s * sp);
+  int sick_poster_getscan(const struct sick_poster_s * sp,
+			  struct sick_scan_s * scan);
   
 #ifdef __cplusplus
 }
