@@ -5,7 +5,10 @@ OBJ=    $(SRC:.c=.o)
 AR=     ar
 RANLIB= ranlib
 
-all: libsick.a
+all: tsick
+
+tsick: tsick.o libsick.a
+	$(CC) -o tsick tsick.o libsick.a
 
 libsick.a: $(OBJ)
 	$(AR) r $@ $?
